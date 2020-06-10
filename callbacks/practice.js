@@ -126,16 +126,17 @@ contains(names, 'Colt', function(result){
 */
 
 function uniq(arr, cb){
- for(i=0; i< arr.length; i++){
-   var double = arr[i]
-  if (arr.indexOf(double, i+1) > 0){
-   var uniqArr = arr.splice(i,1)
+ for(i=0 ; i< arr.length; i++){
+   var thing = arr[i]
+   for(j = i+1; j < arr.length; j++){
+     var double = arr[j]
+     if(thing === double){
+       var uniqArr = arr
+       uniqArr.splice(j, 1)
+     }
+   }
   }
-  else{}
- }
-return cb(uniqArr)
- 
- 
+  return cb(uniqArr)
 }
 
 // Do not edit the code below.
@@ -157,7 +158,7 @@ function each(arr, cb){
   for(i=0; i<arr.length; i++){
    var item = arr[i]
    var indice = i
-   return cb(item, indice)
+   cb(item, indice)
  }
  return 
 }
@@ -177,8 +178,13 @@ each(names, function(item, indice){
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
 
-function getUserById(arr, id, callback){
-  
+function getUserById(arr, id, cb){
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i].id === id){
+      cb(arr[i])
+    }
+  }
+  return
 }
 
 // Do not edit the code below.
